@@ -1,0 +1,90 @@
+﻿@model List<CarMVC.Models.customer>
+@{
+    ViewBag.Title = "mliste";
+    Layout = "~/Views/Shared/yonetim.cshtml";
+}
+@Html.Action("mEkle", "musteriler")
+
+<p style="color:red">@ViewBag.uyarTXT</p>
+<hr />
+<h2>Müşteri Liste</h2>
+<table id="musteriTBL"class="table table-bordered"cellspacing="0"width="100%">
+    <thead>
+        <tr>
+            <td>
+                Ad Soyad
+            </td>
+            <td>
+                E-mail
+            </td>
+            <td>
+                Şifre
+            </td>
+            <td>
+                Telefon
+            </td>
+            <td>
+                Ehliyet Tipi
+            </td>
+            <td>
+                Doğum Yılı
+            </td>
+            <td>
+                İl
+            </td>
+            <td>
+                İlçe
+            </td>
+            <td>
+                Adres
+            </td>
+            <td>
+                Durum
+            </td>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="mus_@item.ID">
+                <td>
+                    <input id="adsoyad_@item.ID" type="text" value="@item.adsoyad" class="form-control" />
+                </td>
+                <td>
+                    <input id="email_@item.ID" type="text" value="@item.email" class="form-control" />
+                </td>
+                <td>
+                    <input id="sifre_@item.ID" type="text" value="@item.sifre" class="form-control" />
+                </td>
+                <td>
+                    <input id="telno_@item.ID" type="text" value="@item.telno" class="form-control" />
+                </td>
+                <td>
+                    <input id="etipi_@item.ID" type="text" value="@item.etipi" class="form-control" />
+                </td>
+                <td>
+                    <input id="dyil_@item.ID" type="text" value="@item.dyil" class="form-control" />
+                </td>
+                <td>
+                    <input id="il_@item.ID" type="text" value="@item.il" class="form-control" />
+                </td>
+                <td>
+                    <input id="ilce_@item.ID" type="text" value="@item.ilce" class="form-control" />
+                </td>
+                <td>
+                    <input id="adres_@item.ID" type="text" value="@item.adres" class="form-control" />
+                </td>
+                <td>
+                    @Html.DropDownList("durumlar_" + item.ID, new SelectList(ViewBag.durumlar, "Value", "Text"), item.durum, new { @class = "form-control" })
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning" onclick="musteriDegistir(@item.ID)">Değiştir</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="musteriSil(@item.ID)">Sil</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

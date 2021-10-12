@@ -1,0 +1,49 @@
+﻿@model List<CarMVC.Models.Ckategori>
+@{
+    ViewBag.Title = "kategoriC";
+    Layout = "~/Views/Shared/yonetim.cshtml";
+}
+
+<body>
+    <div>
+        @using (Html.BeginForm("kategoriC", "kategoriler", FormMethod.Post, new { id = ViewBag.bkatID }))
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <input name="cKatTanim" type="text" class="form-control" placeholder="C kategori yazınız..." />
+                </div>
+                <div align="left" class="col-md-2">
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="color:red">@ViewBag.mesaj</p>
+                </div>
+            </div>
+        }
+    </div>
+    <hr />
+    <table id="ckategoriTBL">
+        <thead>
+            <tr>
+                <td>Tanım</td>
+                <td>Değiştir</td>
+                <td>Sil</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="ck_@item.ID">
+                    <td>
+                        <input id="ckat_@item.ID" type="text" value="@item.ckat" class="form-control" />
+                    </td>
+                    <td><button type="button" class="btn btn-warning" onclick="ckatDegistir(@item.ID)">Değiştir</button></td>
+                    <td><button type="button" class="btn btn-danger" onclick="ckatSil(@item.ID)">Sil</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+

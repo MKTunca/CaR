@@ -1,0 +1,95 @@
+﻿@model List<CarMVC.Models.ARAC>
+@{
+    ViewBag.Title = "aliste";
+    Layout = "~/Views/Shared/yonetim.cshtml";
+}
+
+@Html.Action("AEkle", "araclar")
+
+<p style="color:red">@ViewBag.uyarTXT</p>
+<hr />
+<h3>Araç Liste</h3>
+<table >
+    <thead>
+        <tr>
+            <td>
+                Marka
+            </td>
+            <td>
+                Model
+            </td>
+            <td>
+                Plaka
+            </td>
+            <td>
+                Yıl
+            </td>
+            <td>
+                Yakıt tipi
+            </td>
+            <td>
+                Vites tipi
+            </td>
+            <td>
+                Yaş
+            </td>
+            <td>
+                Durum
+            </td>
+            <td>
+                Foto
+            </td>
+            <td>
+                Fiyat
+            </td>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr id="a_@item.ID">
+            <td>
+                <input id="marka_@item.ID " type="text" value="@item.marka" class="form-control" />
+            </td>
+            <td>
+                <input id="model_@item.ID " type="text" value="@item.model" class="form-control" />
+            </td>
+            <td>
+                <input id="plaka_@item.ID " type="text" value="@item.plaka" class="form-control" />
+            </td>
+            <td>
+                <input id="yil_@item.ID " type="text" value="@item.yil" class="form-control" />
+            </td>
+            <td>
+                <input id="ytip_@item.ID " type="text" value="@item.ytip" class="form-control" />
+            </td>
+            <td>
+                <input id="vtip_@item.ID " type="text" value="@item.vtip" class="form-control" />
+            </td>
+            <td>
+                <input id="maxyas_@item.ID " type="text" value="@item.maxyas" class="form-control" />
+            </td>
+
+            <td>
+                @Html.DropDownList("durumlar_" + item.ID, new SelectList(ViewBag.durumlar, "Value", "Text"), item.durum, new { @class = "form-control" })
+            </td>
+            <td>
+                <img id="foto_@item.ID" src="@item.imaj.Replace("~","")" width="50px" />
+                <input type="file" id="imaj_@item.ID" onchange="imajYenile(@item.ID)" />
+            </td>
+            <td>
+                <input id="fiyat_@item.ID " type="text" value="@item.fiyat" class="form-control" />
+            </td>
+            <td>
+                <button type="button" class="btn btn-warning" onclick="aracDegistir(@item.ID)">Değiştir</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" onclick="aracSil(@item.ID)">Sil</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+    
+

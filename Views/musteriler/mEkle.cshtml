@@ -1,0 +1,97 @@
+﻿@model CarMVC.Models.customer
+
+@using (Html.BeginForm("mEkle", "musteriler", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.adsoyad, new { @class = "form-control", placeholder = "Ad Soyad" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.email, new { @class = "form-control", placeholder = "E-mail" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.sifre, new { @class = "form-control", placeholder = "Şifre", type = "password" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.telno, new { @class = "form-control", placeholder = "Telefon" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="row" style="margin-top:15px">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-4">
+                    <select name="etipi" class="btn btn-primary" style="width:100%">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.dyil, new { @class = "form-control", placeholder = "Doğum Yılı", type = "number", min = "1930", max = ViewBag.maxyil , step = "1" })
+                </div>
+                <div class="col-md-3">
+                    <select name="durum" class="btn btn-success" style="width:100%">
+                        <option value="Aktif">Aktif</option>
+                        <option value="Pasif">Pasif</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="row" style="margin-top:15px">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.il, new { @class = "form-control", placeholder = "İl" })
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.ilce, new { @class = "form-control", placeholder = "İlçe" })
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.adres, new { @class = "form-control", placeholder = "Adres" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:15px">
+        <div class="col-md-2">
+
+        </div>
+
+        <div align="right" class="col-md-8">
+            <button type="submit" class="btn btn-success">Ekle</button>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <p>@ViewBag.uyari</p>
+
+
+}

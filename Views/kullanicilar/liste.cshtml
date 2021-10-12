@@ -1,0 +1,66 @@
+﻿@model List<CarMVC.Models.User>
+@{
+               
+
+                ViewBag.Title = "liste";
+                Layout = "~/Views/Shared/yonetim.cshtml";
+}
+
+@Html.Action("Ekle", "kullanicilar")
+
+<p style="color:red">@ViewBag.uyarTXT</p>
+<hr />
+<h2>liste</h2>
+
+<table id="kullaniciTBL"class="table-bordered">
+    <thead>
+        <tr>
+            <td>
+                E-mail
+            </td>
+            <td>
+                Telefon
+            </td>
+            <td>
+                Şifre
+            </td>
+            <td>
+                Ad-Soyad
+            </td>
+
+            <td>
+                Değiştir
+            </td>
+            <td>
+                Sil
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="satir_@item.ID">
+                <td>
+                    <input id="Email_@item.ID" type="text" value="@item.Email" class="form-control" />
+                </td>
+                <td>
+                    <input id="Tel_@item.ID" type="text" value="@item.Tel" class="form-control" />
+                </td>
+                <td>
+                    <input id="Sifre_@item.ID" type="text" value="@item.Sifre" class="form-control" />
+                </td>
+                <td>
+                    <input id="AdSoyad_@item.ID" type="text" value="@item.AdSoyad" class="form-control" />
+                </td>
+
+
+                <td>
+                    <button type="button" class="btn btn-warning" onclick="bilgiDegistir(@item.ID)">Değiştir</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="kullaniciSil(@item.ID)">Sil</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,116 @@
+﻿@model CarMVC.Models.ARAC
+
+@using (Html.BeginForm("AEkle", "araclar", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.marka, new { @class = "form-control", placeholder = "Marka" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.model, new { @class = "form-control", placeholder = "Model" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.plaka, new { @class = "form-control", placeholder = "Plaka" })
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.maxyas, new { @class = "form-control", placeholder = "Maksimum yaş" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="row" style="margin-top:15px">
+        <div class="col-md-2">
+            
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-3">
+                    @*@Html.TextBoxFor(m => m.Vites, new { @class = "form-control", placeholder = "Vites Tipi", @style = "" })*@
+                    <select name="vtip" class="btn btn-primary" style="width:100%">
+                        <option value="Düz">Düz</option>
+                        <option value="Otomatik">Otomatik</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    @*@Html.TextBoxFor(m => m.yakit, new { @class = "form-control", placeholder = "Yakıt Tipi" })*@
+                    <select name="ytip" class="btn btn-warning" style="width:100%">
+                        <option value="Benzin">Benzin</option>
+                        <option value="Dizel">Dizel</option>
+                        <option value="Benzin/LPG">Benzin/LPG</option>
+                        <option value="Hibrit">Hibrit</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select name="durum" class="btn btn-success" style="width:100%">
+                        <option value="Aktif">Aktif</option>
+                        <option value="Pasif">Pasif</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.yil, new { @class = "form-control", placeholder = "Yıl", type ="number", min="1930", max = ViewBag.maxYil, step="1" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:15px">
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="file" name="dosya" id="dosya" />
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownList("akat_id", new SelectList(ViewBag.AnaKategori, "ID", "akat"), new { @class = "form-control", onchange = "AltKategoriSec()" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownList("bkat_id", new SelectList(ViewBag.AltKategori, "ID", "bkat"), new { @class = "form-control" })
+
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => m.fiyat, new { @class = "form-control", placeholder = "Fiyat" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="row" style="margin-top:15px">
+        <div class="col-md-2">
+
+        </div>
+
+        <div align="right" class="col-md-8">
+            <button type="submit" class="btn btn-success">Ekle</button>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <p>@ViewBag.uyari</p>
+
+
+}
+
+

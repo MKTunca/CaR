@@ -1,0 +1,52 @@
+﻿@model List<CarMVC.Models.AKategori>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/yonetim.cshtml";
+}
+
+
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "kategoriler", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <input name="aKatTanim" type="text" class="form-control" placeholder="Ana kategori yazınız..." />
+                </div>
+                <div align="left" class="col-md-2">
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="color:red">@ViewBag.mesaj</p>
+                </div>
+            </div>
+        }
+    </div>
+    <hr />
+    <table id="akategoriTBL">
+        <thead>
+            <tr>
+                <td>Tanım</td>
+                <td>Değiştir</td>
+                <td>Sil</td>
+                <td>Detay</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="ak_@item.ID">
+                    <td>
+                        <input id="akat_@item.ID" type="text" value="@item.akat" class="form-control" />
+                    </td>
+                    <td><button type="button" class="btn btn-warning" onclick="akatDegistir(@item.ID)">Değiştir</button></td>
+                    <td><button type="button" class="btn btn-danger" onclick="akatSil(@item.ID)">Sil</button></td>
+                    <td><a href="/kategoriler/kategoriB/@item.ID" class="btn btn-info">Detay</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+

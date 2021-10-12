@@ -1,0 +1,28 @@
+﻿@model CarMVC.Models.User
+
+@using (Html.BeginForm("Ekle", "kullanicilar", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+
+        <div class="col-md-3">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "E-mail" })
+        </div>
+        <div class="col-md-3">
+            @Html.TextBoxFor(m => m.Sifre, new { @class = "form-control", placeholder = "Şifre", type = "password" })
+        </div>
+        <div class="col-md-2">
+            @Html.TextBoxFor(m => m.Tel, new { @class = "form-control", placeholder = "Telefon" })
+        </div>
+        <div class="col-md-2">
+            @Html.TextBoxFor(m => m.AdSoyad, new { @class = "form-control", placeholder = "Ad Soyad" })
+        </div>
+        
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success">Ekle</button>
+        </div>
+    </div>
+    <div class="row">
+        <p>@ViewBag.uyari</p>
+    </div>
+}
+
